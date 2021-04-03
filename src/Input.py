@@ -1,6 +1,8 @@
+from Utility import *
+
 def inputToAdj(filename):
     # Format text input
-    # 0 1 0 2
+    # 0 1 0 2 -> dalam km, float
     # 1 0 3 4
     # 0 3 0 5
     # 2 4 5 0
@@ -23,8 +25,8 @@ def inputToAdj(filename):
         curr = nodes[i]
         row = file.readline().split(' ')
         for j in range(N):
-            if (int(row[j]) > 0):
-                result[curr].append((nodes[j], int(row[j])))
+            if (float(row[j]) > 0):
+                result[curr].append((nodes[j], float(row[j])))
     
     return result
         
@@ -39,7 +41,7 @@ def inputToCoor(filename):
     # etc
 
     # Hasil output: dictionary simpul dengan koordinatnya
-    # ie. {'A': (x, y), 'B': (x, y)}
+    # ie. {'A': (latitude, longitude), 'B': (latitude, longitude)} -> ln lt dalam degree
 
     file = open(filename, "r")
     N = int(file.readline())
@@ -47,8 +49,7 @@ def inputToCoor(filename):
 
     for i in range(N):
         line = file.readline().replace('(', ' ').replace(',', ' ').replace(')', ' ').split()
-        print(line)
-        result.update({line[0]: (int(line[1]), int(line[2]))})
+        result.update({line[0]: (float(line[1]), float(line[2]))})
     
 
     return result
@@ -59,3 +60,6 @@ r2 = inputToCoor('test/test1.txt')
 
 print(r1)
 print(r2)
+
+distToRome = findDistanceTo(r2, 'Rome')
+print(distToRome)
