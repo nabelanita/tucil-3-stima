@@ -54,8 +54,8 @@ def inputToCoor(filename):
     return result
     
 
-r1 = inputToAdj('test/test1.txt')
-r2 = inputToCoor('test/test1.txt')
+r1 = inputToAdj('../test/test1.txt')
+r2 = inputToCoor('../test/test1.txt')
 
 print(r1)
 print(r2)
