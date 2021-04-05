@@ -24,6 +24,9 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
     if (simpulSekarang == simpulTujuan):
         listReturn = list(listSimpulTetangga)
         listReturn.append(simpulSekarang)
+        cost = getJarakSimpulXKeSimpulAwal(listReturn,adjDict)
+        # print(cost)
+        listReturn.append(cost)
         return listReturn
     else:
         # print(simpulSekarang)
@@ -87,10 +90,11 @@ def getJarakSimpulXKeSimpulAwal(listUrutanJalan, adjDict):
     jarak = 0.0
     for i in range(len(listUrutanJalan)-1):
         for key in adjDict:
-            if (key == i):
+            if (key == listUrutanJalan[i]):
                 for tup in adjDict[key]:
-                    if (tup[0] == i+1):
+                    if (tup[0] == listUrutanJalan[i+1]):
                         jarak += tup[1]
+                        # print(jarak)
     return jarak
 
 def getJarakLurusSimpulXKeSimpulTujuan(listOfDistance, X, simpulTujuan):
