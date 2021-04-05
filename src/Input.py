@@ -1,4 +1,5 @@
 from Utility import *
+import os
 
 def inputToAdj(filename):
     # Format text input
@@ -11,7 +12,10 @@ def inputToAdj(filename):
     # nama simpul tetangg dan jaraknya (for now)
     # ie. {A: [(B, 10), (C, 17))]}
 
-    file = open(filename, "r")
+    # file = open(filename, "r")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    lines = os.path.join(dir_path, "../test/" + filename)
+    file = open(lines)
     N = int(file.readline())
     result = {}
     nodes = []
@@ -28,6 +32,8 @@ def inputToAdj(filename):
             if (float(row[j]) > 0):
                 result[curr].append((nodes[j], float(row[j])))
     
+    file.close
+
     return result
         
                 
@@ -43,7 +49,12 @@ def inputToCoor(filename):
     # Hasil output: dictionary simpul dengan koordinatnya
     # ie. {'A': (latitude, longitude), 'B': (latitude, longitude)} -> ln lt dalam degree
 
-    file = open(filename, "r")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    if os.name == "nt" :
+        lines = os.path.join(dir_path, "..\\test\\" + filename)
+    else:
+        lines = os.path.join(dir_path, "../test/" + filename)
+    file = open(lines)
     N = int(file.readline())
     result = {}
 
@@ -51,15 +62,6 @@ def inputToCoor(filename):
         line = file.readline().replace('(', ' ').replace(',', ' ').replace(')', ' ').split()
         result.update({line[0]: (float(line[1]), float(line[2]))})
     
+    file.close()
 
     return result
-    
-
-r1 = inputToAdj('../test/test1.txt')
-r2 = inputToCoor('../test/test1.txt')
-
-print(r1)
-print(r2)
-
-distToRome = findDistanceTo(r2, 'Rome')
-print(distToRome)

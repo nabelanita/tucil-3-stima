@@ -1,12 +1,12 @@
 from Input import *
-from Utility import *
 
 def AStar(simpulAwal, simpulTujuan, adjDict, listOfDistance):
     # adjDict adalah dictionary hasil return fungsi inputToAdj
     # listOfDistance adalah return fungsi inputToCoor
     result = []
     tampunganSimpulTetangga = []
-    listSimpulTetangga = []
+    listSimpulTetangga = adjDict[simpulAwal]
+    print(listSimpulTetangga)
     visited = {}
     for key in listOfDistance:
         visited[key] = False
@@ -18,6 +18,7 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
         listReturn.append(simpulSekarang)
         return listReturn
     else:
+        print(simpulSekarang)
         listTampungan = list(listSimpulTetangga)
         listTampungan.append(simpulSekarang)
         # for dictionary in tampunganSimpulTetangga:
