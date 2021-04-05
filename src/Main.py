@@ -1,10 +1,10 @@
 from Algoritma import *
 
-r1 = inputToAdj("test1.txt")
-r2 = inputToCoor("test1.txt")
+r1 = inputToAdj("../test/test1.txt")
+r2 = inputToCoor("../test/test1.txt")
 
-
-print(r2)
+# print(r1)
+# print(r2)
 
 distToRome = findDistanceTo(r2, 'Rome')
 # print(distToRome)
