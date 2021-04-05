@@ -1,6 +1,38 @@
 from Utility import *
 import os
 
+def inputToAdjWeb(inputFile):
+    file = inputFile.splitlines()
+    N = int(file[0])
+    result = {}
+    nodes = []
+
+    for i in range(1, N+1):
+        line = file[i].split(' ')
+        result.update({line[0]: []})
+        nodes.append(line[0])
+    
+    for i in range(N+1, 2*N+1):
+        curr = nodes[i-(N+1)]
+        row = file[i].split(' ')
+        for j in range(len(row)):
+            if (float(row[j]) > 0):
+                result[curr].append((nodes[j], float(row[j])))
+    
+    return result
+
+def inputToCoorWeb(inputFile):
+    file = inputFile.splitlines()
+    N = int(file[0])
+    result = {}
+    for i in range(1,N+1):
+        line = file[i].replace('(', ' ').replace(',', ' ').replace(')', ' ').split()
+        result.update({line[0]: (float(line[1]), float(line[2]))})
+    
+    return result
+    
+
+
 def inputToAdj(filename):
     # Format text input
     # 0 1 0 2 -> dalam km, float

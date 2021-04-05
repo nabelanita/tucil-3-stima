@@ -10,10 +10,10 @@ def jsonToDict(stuff):
     return result
 
 
-def findNearest(origin, listNode):
-    distance = -1
-    node = None
-    for node in listNode:
-        if node != origin:
+# def findNearest(origin, listNode):
+#     distance = -1
+#     node = None
+#     for node in listNode:
+#         if node != origin:
             
     

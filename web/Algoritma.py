@@ -39,6 +39,8 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
         for key in adjDict:
             if (key == simpulSekarang):
                 for tup in adjDict[key]:
+                    print(tup)
+                    print(tempVisited)
                     if not (tempVisited[tup[0]]):
                         calonKey = tup[0]
                         calonDict = {calonKey: listTampungan}
