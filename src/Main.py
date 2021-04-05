@@ -1,7 +1,7 @@
 from Algoritma import *
 
-r1 = inputToAdj("test3.txt")
-r2 = inputToCoor("test3.txt")
+r1 = inputToAdj("test4.txt")
+r2 = inputToCoor("test4.txt")
 
 
 print(r1)
