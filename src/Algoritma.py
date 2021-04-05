@@ -3,8 +3,6 @@ from Input import *
 def AStar(simpulAwal, simpulTujuan, adjDict, listOfDistance):
     # adjDict adalah dictionary hasil return fungsi inputToAdj
     # listOfDistance adalah return fungsi inputToCoor
-    result = []
-    # print(result)
     tampunganSimpulTetangga = [{simpulAwal: []}]
     # print(tampunganSimpulTetangga)
     listSimpulTetangga = []
@@ -15,8 +13,9 @@ def AStar(simpulAwal, simpulTujuan, adjDict, listOfDistance):
     for key in listOfDistance:
         visited[key] = False
     # print(visited)
-    evaluateSimpul(simpulAwal,simpulAwal,listSimpulTetangga,simpulTujuan,tampunganSimpulTetangga,visited,adjDict,listOfDistance)
-    # print(result)
+    result = evaluateSimpul(simpulAwal,simpulAwal,listSimpulTetangga,simpulTujuan,tampunganSimpulTetangga,visited,adjDict,listOfDistance)
+    print(result)
+    
 
 def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan, tampunganSimpulTetangga, visited, adjDict, listOfDistance):
     tempListSimpulTetangga = list(listSimpulTetangga)
@@ -25,7 +24,7 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
     if (simpulSekarang == simpulTujuan):
         listReturn = list(listSimpulTetangga)
         listReturn.append(simpulSekarang)
-        print(listReturn)
+        return listReturn
     else:
         # print(simpulSekarang)
         listTampungan = list(tempListSimpulTetangga)
@@ -82,7 +81,7 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
                 # listTampungan.append(simpulSekarang)
         print("listTampungan baru:")
         print(listTampungan)
-        evaluateSimpul(simpulAwal,simpulWithNilaiTerkecil,listTampungan,simpulTujuan,tempTampunganSimpulTetangga,tempVisited,adjDict,listOfDistance)
+        return evaluateSimpul(simpulAwal,simpulWithNilaiTerkecil,listTampungan,simpulTujuan,tempTampunganSimpulTetangga,tempVisited,adjDict,listOfDistance)
 
 def getJarakSimpulXKeSimpulAwal(listUrutanJalan, adjDict):
     jarak = 0.0
