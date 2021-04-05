@@ -21,6 +21,11 @@ def inputToAdjWeb(inputFile):
     
     return result
 
+# file1 = inputToAdjWeb("../test/test1.txt")
+# file2 = inputToAdj("../test/test1.txt")
+# print(file1)
+# print(file2)
+
 def inputToCoorWeb(inputFile):
     file = inputFile.splitlines()
     N = int(file[0])
