@@ -6,7 +6,7 @@ r2 = inputToCoor("../test/test1.txt")
 # print(r1)
 # print(r2)
 
-distToRome = findDistanceTo(r2, 'Rome')
+# distToRome = findDistanceTo(r2, 'Rome')
 # print(distToRome)
 
-AStar('Rome', 'Madrid', r1, r2)
+# AStar('Rome', 'Madrid', r1, r2)
