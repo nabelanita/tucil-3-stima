@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<h2>Hasil pencarian Rute</h2>
+<div id="map"></div>
+<input onclick="deleteMarkers()" type="button" value="Clear" />
+<script>
+    var json = "{{ res }}"
+    var listCoor = JSON.parse(json.replace(/&#34;/g,'"'))
+    
+    let map
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: listCoor[0],
+            mapTypeId: "terrain",
+        });
+        
+        const route = new google.maps.Polyline({
+            path: listCoor,
+            geodesic: true,
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+        });
+        route.setMap(map);
+    } 
+
+
+    
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbFefdoheWQ7qwuk3nGF882AgcwoErzl8&callback=initMap">
+</script>
+<!-- <script type = "text/javascript" src="{{ url_for('static', filename='map.js') }}"></script> -->
+{% endblock %}
