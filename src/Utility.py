@@ -22,3 +22,10 @@ def haversine(ltA, lnA, ltB, lnB):
     # rumus haversine
     # 6317 = jari2 bumi dlm km
     return 6371.0088 * 2.0 * asin(sqrt(sin((ltB - ltA)/2.0)**2.0 + cos(ltA) * cos(ltB) * sin((lnB - lnA)/2.0)**2.0))
+
+def convertToLatLng(source, listCoor):
+    result = []
+    for i in range(len(source)-1):
+        result.append({"lat":listCoor[source[i]][0], "lng":listCoor[source[i]][1]})
+
+    return result

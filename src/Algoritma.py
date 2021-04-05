@@ -14,7 +14,7 @@ def AStar(simpulAwal, simpulTujuan, adjDict, listOfDistance):
         visited[key] = False
     # print(visited)
     result = evaluateSimpul(simpulAwal,simpulAwal,listSimpulTetangga,simpulTujuan,tampunganSimpulTetangga,visited,adjDict,listOfDistance)
-    print(result)
+    return result
     
 
 def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan, tampunganSimpulTetangga, visited, adjDict, listOfDistance):
