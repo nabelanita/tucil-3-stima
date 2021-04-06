@@ -9,12 +9,18 @@
 </style>
 {% endblock %}
 {% block body %}
+<h1>Tucil Stima</h1>
 <p>
    Upload file matriks:<br>
     <input id="input-file" type="file" name="datafile" size="40">
     </p>
 <br>
-<button id="submit">Generate</button>
+
+<button id="read">Baca File</button>
+<br>
+<div id="choices"></div>
+<br>
+
 <script type = "text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 </script>
 {% endblock %}

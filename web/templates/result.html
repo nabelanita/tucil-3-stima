@@ -10,8 +10,13 @@
 {% endblock %}
 {% block body %}
 <h2>Hasil pencarian Rute</h2>
+<br>
 <div id="map"></div>
-<input onclick="deleteMarkers()" type="button" value="Clear" />
+<!-- <input onclick="deleteMarkers()" type="button" value="Clear" /> -->
+
+<form action="{{ url_for('index') }}" method="get"> 
+    <button>Kembali</button>
+</form>
 <script>
     var json = "{{ res }}"
     var listCoor = JSON.parse(json.replace(/&#34;/g,'"'))

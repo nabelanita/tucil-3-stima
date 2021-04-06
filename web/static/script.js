@@ -2,7 +2,7 @@ let nodes = []
 let fileContent
 
 $(document).ready(function() {
-    $('#submit').click(function(event) {
+    $('#read').click(function(event) {
         // $.post('result', nodes, function() {console.log("ok")})
         // event.preventDefault();
         $.ajax({
@@ -10,11 +10,22 @@ $(document).ready(function() {
             type: "POST",
             // data: JSON.stringify(nodes),
             data: fileContent,
-            contentType: "application/json; charset=utf-8"
+            contentType: "application/json; charset=utf-8",
+            success: function(response) {
+                $("#choices").html(response);
+            },
+            error: function(xhr) {
+            //Do Something to handle error
+            console.error(xhr)
+            }
         });
 
         
     })
+
+    $('#submit').click(function(event)) {
+        
+    }
 
 })
 

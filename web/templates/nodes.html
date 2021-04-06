@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block body %}
+<label for="origin">Pilih simpul awal:</label>
+<form action="{{ url_for('result') }}" method="post">
+    <select name="origin" id="origin">
+    {% for node in nodeList %}
+      <option value="{{ node }}">{{ node }}</option>
+      {% endfor %}
+    </select>
+    
+    <label for="goal">Pilih simpul tujuan:</label>
+    <select name="goal" id="goal">
+    {% for node in nodeList %}
+      <option value="{{ node }}">{{ node }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <button id="submit" type="submit">Cari Rute</button>
+</form>
+<br>
+
+{% endblock %}

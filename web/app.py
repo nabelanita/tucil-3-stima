@@ -3,23 +3,43 @@ from Algoritma import *
 
 app = Flask(__name__)
 
+file = []
+listAdj = []
+listCoor = []
+
+
 @app.route('/search', methods=['POST', 'GET'])
 def search():
-    data = request.data.decode(encoding="utf-8")
-    listAdj = inputToAdjWeb(data)
-    listCoor = inputToCoorWeb(data)
-    hasil = AStar('BundaranHI', 'TuguTani', listAdj, listCoor)
-    hasilLatLng = convertToLatLng(hasil, listCoor)
-    res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
-    if (request.method == "POST"):
-        return redirect(url_for('result', res=res))
+    file.clear()
+    listAdj.clear()
+    listCoor.clear()
 
-    return render_template('index.html')
+    file.append(request.data.decode(encoding="utf-8"))
+    
+    data = file[0]
+    listAdj.append(inputToAdjWeb(data))
+    listCoor.append(inputToCoorWeb(data))
+    node = findAllNode(listAdj[0])
 
-@app.route('/result')
+    return render_template('nodes.html', nodeList=node)
+    # hasil = AStar('BundaranHI', 'TuguTani', listAdj, listCoor)
+    # hasilLatLng = convertToLatLng(hasil, listCoor)
+    # res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
+    # if (request.method == "POST"):
+    #     return redirect(url_for('result', res=res))
+
+    # return render_template('index.html')
+
+@app.route('/result', methods=['POST'])
 def result():
-    res = request.args['res']
+    origin = request.form['origin']
+    goal = request.form['goal']
+    hasil = AStar(goal, origin, listAdj[0], listCoor[0])
+    hasilLatLng = convertToLatLng(hasil, listCoor[0])
+    res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
     return render_template('result.html', res=res)
+    # if (request.method == "POST"):
+    #     return redirect(url_for('result', res=res))
 
 @app.route('/')
 def index():

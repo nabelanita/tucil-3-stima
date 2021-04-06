@@ -29,3 +29,10 @@ def convertToLatLng(source, listCoor):
         result.append((listCoor[source[i]][0],listCoor[source[i]][1]))
 
     return result
+
+def findAllNode(listAdj):
+    result = []
+    for key in listAdj:
+        result.append(key)
+
+    return result
