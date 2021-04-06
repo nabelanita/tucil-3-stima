@@ -8,6 +8,7 @@ listAdj = []
 listCoor = []
 
 
+
 @app.route('/search', methods=['POST', 'GET'])
 def search():
     file.clear()
@@ -28,10 +29,9 @@ def search():
 def result():
     origin = request.form['origin']
     goal = request.form['goal']
-    hasil = AStar(goal, origin, listAdj[0], listCoor[0])
+    hasil = AStar(origin, goal, listAdj[0], listCoor[0])
     dist = hasil[len(hasil)-1]
     hasilLatLng = convertToLatLng(hasil, listCoor[0])
-
     temp = findAllNode(listAdj[0])
     temp.append("X")
     temp = convertToLatLng(findAllNode(temp), listCoor[0])

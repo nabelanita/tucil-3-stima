@@ -32,6 +32,11 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
         # print(simpulSekarang)
         listTampungan = list(tempListSimpulTetangga)
         listTampungan.append(simpulSekarang)
+        # print(listTampungan)
+        # for dictionary in tampunganSimpulTetangga:
+        #     if simpulSekarang in dictionary:
+        #         listTampungan = list(dictionary[simpulSekarang])
+        #         listTampungan.append(simpulSekarang)
 
         for key in adjDict:
             if (key == simpulSekarang):
@@ -40,6 +45,8 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
                         calonKey = tup[0]
                         calonDict = {calonKey: listTampungan}
                         tempTampunganSimpulTetangga.append(calonDict)
+        # print("Ini tampunganSimpulTetangga yang udah ditambah sama tetangga baru")
+        # print(tempTampunganSimpulTetangga)
         
         for dictionary in tempTampunganSimpulTetangga:
             if (simpulSekarang in dictionary):
@@ -49,6 +56,10 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
                     break
         # if not(visited[simpulAwal]):
         #     visited[simpulAwal] = True
+        # print("visited yang baru:")
+        # print(tempVisited)
+        # print("tampunganSimpulTetangga hasil udah remove simpul sekarang")
+        # print(tempTampunganSimpulTetangga)
 
         nilaiTerkecil = 0.0
         simpulWithNilaiTerkecil = "X"
@@ -64,11 +75,15 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
                     if (jarakSementara < nilaiTerkecil):
                         nilaiTerkecil = jarakSementara
                         simpulWithNilaiTerkecil = key   
-
+        # print("Simpul yang bakal dikunjungin selanjutnya: ")
+        # print(simpulWithNilaiTerkecil) 
 
         for dictionary in tampunganSimpulTetangga:
             if simpulWithNilaiTerkecil in dictionary:
                 listTampungan = list(dictionary[simpulWithNilaiTerkecil])
+                # listTampungan.append(simpulSekarang)
+        # print("listTampungan baru:")
+        # print(listTampungan)
         return evaluateSimpul(simpulAwal,simpulWithNilaiTerkecil,listTampungan,simpulTujuan,tempTampunganSimpulTetangga,tempVisited,adjDict,listOfDistance)
 
 def getJarakSimpulXKeSimpulAwal(listUrutanJalan, adjDict):
