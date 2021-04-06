@@ -22,13 +22,7 @@ def search():
     node = findAllNode(listAdj[0])
 
     return render_template('nodes.html', nodeList=node)
-    # hasil = AStar('BundaranHI', 'TuguTani', listAdj, listCoor)
-    # hasilLatLng = convertToLatLng(hasil, listCoor)
-    # res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
-    # if (request.method == "POST"):
-    #     return redirect(url_for('result', res=res))
-
-    # return render_template('index.html')
+    
 
 @app.route('/result', methods=['POST'])
 def result():
@@ -36,10 +30,18 @@ def result():
     goal = request.form['goal']
     hasil = AStar(goal, origin, listAdj[0], listCoor[0])
     hasilLatLng = convertToLatLng(hasil, listCoor[0])
+
+    temp = findAllNode(listAdj[0])
+    temp.append("X")
+    temp = convertToLatLng(findAllNode(temp), listCoor[0])
+
+    name = findAllNode(listAdj[0])
+
+    nodeNames = json.dumps(name)
+    node = json.dumps([{"lat": n[0], "lng": n[1]} for n in temp])
     res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
-    return render_template('result.html', res=res)
-    # if (request.method == "POST"):
-    #     return redirect(url_for('result', res=res))
+    return render_template('result.html', res=res, node=node, nodeNames=nodeNames)
+
 
 
 @app.route('/')
