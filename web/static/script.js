@@ -23,10 +23,6 @@ $(document).ready(function() {
         
     })
 
-    $('#submit').click(function(event)) {
-        
-    }
-
 })
 
 document.getElementById('input-file').addEventListener('change', getFile)
