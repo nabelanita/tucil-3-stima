@@ -25,8 +25,9 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
         listReturn = list(listSimpulTetangga)
         listReturn.append(simpulSekarang)
         cost = getJarakSimpulXKeSimpulAwal(listReturn,adjDict)
+        formattedCost = "{:.2f}".format(cost)
         # print(cost)
-        listReturn.append(cost)
+        listReturn.append(formattedCost)
         return listReturn
     else:
         # print(simpulSekarang)
@@ -63,28 +64,36 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
 
         nilaiTerkecil = 0.0
         simpulWithNilaiTerkecil = "X"
+        pathSimpulWithNilaiTerkecil = []
         for dictionary in tempTampunganSimpulTetangga:
             for key in dictionary:
                 listSementara = list(dictionary[key])
                 listSementara.append(key)
                 jarakSementara = getJarakSimpulXKeSimpulAwal(listSementara,adjDict) + getJarakLurusSimpulXKeSimpulTujuan(listOfDistance,simpulSekarang,simpulTujuan)
+                # print(jarakSementara)
                 if (nilaiTerkecil == 0.0):
                     nilaiTerkecil = jarakSementara
                     simpulWithNilaiTerkecil = key
+                    pathSimpulWithNilaiTerkecil = list(dictionary[key])
                 else:
                     if (jarakSementara < nilaiTerkecil):
                         nilaiTerkecil = jarakSementara
-                        simpulWithNilaiTerkecil = key   
+                        simpulWithNilaiTerkecil = key  
+                        pathSimpulWithNilaiTerkecil = list(dictionary[key])
+        # print("nilai terkecil: ")
+        # print(nilaiTerkecil) 
         # print("Simpul yang bakal dikunjungin selanjutnya: ")
         # print(simpulWithNilaiTerkecil) 
+        # print("Path simpul yang mau dikunjungin: ")
+        # print(pathSimpulWithNilaiTerkecil)
 
-        for dictionary in tampunganSimpulTetangga:
-            if simpulWithNilaiTerkecil in dictionary:
-                listTampungan = list(dictionary[simpulWithNilaiTerkecil])
-                # listTampungan.append(simpulSekarang)
+        # for dictionary in tampunganSimpulTetangga:
+        #     if simpulWithNilaiTerkecil in dictionary:
+        #         listTampungan = list(dictionary[simpulWithNilaiTerkecil])
+        #         # listTampungan.append(simpulSekarang)
         # print("listTampungan baru:")
-        # print(listTampungan)
-        return evaluateSimpul(simpulAwal,simpulWithNilaiTerkecil,listTampungan,simpulTujuan,tempTampunganSimpulTetangga,tempVisited,adjDict,listOfDistance)
+        # print(path)
+        return evaluateSimpul(simpulAwal,simpulWithNilaiTerkecil,pathSimpulWithNilaiTerkecil,simpulTujuan,tempTampunganSimpulTetangga,tempVisited,adjDict,listOfDistance)
 
 def getJarakSimpulXKeSimpulAwal(listUrutanJalan, adjDict):
     jarak = 0.0
