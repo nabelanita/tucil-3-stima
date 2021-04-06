@@ -29,6 +29,7 @@ def result():
     origin = request.form['origin']
     goal = request.form['goal']
     hasil = AStar(goal, origin, listAdj[0], listCoor[0])
+    dist = hasil[len(hasil)-1]
     hasilLatLng = convertToLatLng(hasil, listCoor[0])
 
     temp = findAllNode(listAdj[0])
@@ -43,7 +44,7 @@ def result():
     node = json.dumps([{"lat": n[0], "lng": n[1]} for n in temp])
     res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
     adjCoor = json.dumps(coor)
-    return render_template('result.html', res=res, node=node, nodeNames=nodeNames, adjCoor=adjCoor)
+    return render_template('result.html', res=res, node=node, dist=dist, nodeNames=nodeNames, adjCoor=adjCoor)
 
 
 
