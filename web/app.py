@@ -44,7 +44,7 @@ def result():
     node = json.dumps([{"lat": n[0], "lng": n[1]} for n in temp])
     res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
     adjCoor = json.dumps(coor)
-    return render_template('result.html', res=res, node=node, dist=dist, nodeNames=nodeNames, adjCoor=adjCoor)
+    return render_template('result.html', origin=origin, goal=goal, res=res, node=node, dist=dist, nodeNames=nodeNames, adjCoor=adjCoor)
 
 
 
