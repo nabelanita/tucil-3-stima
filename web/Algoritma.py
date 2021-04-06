@@ -25,8 +25,9 @@ def evaluateSimpul(simpulAwal, simpulSekarang, listSimpulTetangga, simpulTujuan,
         listReturn = list(listSimpulTetangga)
         listReturn.append(simpulSekarang)
         cost = getJarakSimpulXKeSimpulAwal(listReturn,adjDict)
+        formattedCost = "{:.2f}".format(cost)
         # print(cost)
-        listReturn.append(cost)
+        listReturn.append(formattedCost)
         return listReturn
     else:
         # print(simpulSekarang)
