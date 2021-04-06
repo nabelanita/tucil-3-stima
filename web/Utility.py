@@ -37,3 +37,23 @@ def findAllNode(listAdj):
 
     return result
 
+def convertAdjToLatLng(listAdj, listCoor):
+    result = []
+    for key in listAdj:
+        for adj in (listAdj[key]):
+            temp = [key, adj[0]]
+            temp.append('X')
+            result.append(convertToLatLng(temp, listCoor))
+    
+    return convToDict(result)
+
+def convToDict(listLatLng):
+    result = []
+    for coor in listLatLng:
+        temp = []
+        for latLng in coor:
+            temp.append({"lat": latLng[0], "lng": latLng[1]})
+        result.append(temp)
+
+    return result
+    

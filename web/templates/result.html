@@ -29,7 +29,8 @@
     var name = "{{ nodeNames }}"
     var nodeNames = JSON.parse(name.replace(/&#34;/g,'"'))
 
-    console.log(nodeNames)
+    var coor = "{{ adjCoor }}"
+    var adjCoor = JSON.parse(coor.replace(/&#34;/g,'"'))
 
     
     
@@ -54,15 +55,24 @@
                 infoWindow.open(map, marker)
             })
         }
+
+        function drawRoute(ltlng, map, color) {
+            const route = new google.maps.Polyline({
+                path: ltlng,
+                geodesic: true,
+                strokeColor: color,
+                strokeOpacity: 1.0,
+                strokeWeight: 2,
+            });
+            route.setMap(map);
+        }
         
-        const route = new google.maps.Polyline({
-            path: listCoor,
-            geodesic: true,
-            strokeColor: "#FF0000",
-            strokeOpacity: 1.0,
-            strokeWeight: 2,
-        });
-        route.setMap(map);
+        for (var i = 0; i < adjCoor.length; i++) {
+            drawRoute(adjCoor[i], map, "#000000")
+        }
+        
+        drawRoute(listCoor, map, "#FF0000")
+        
 
         for (var i = 0; i < listNode.length; i++) {
             var label = "<h3>" + nodeNames[i] + "</h3>"

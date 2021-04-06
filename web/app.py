@@ -37,10 +37,13 @@ def result():
 
     name = findAllNode(listAdj[0])
 
+    coor = convertAdjToLatLng(listAdj[0], listCoor[0])
+
     nodeNames = json.dumps(name)
     node = json.dumps([{"lat": n[0], "lng": n[1]} for n in temp])
     res = json.dumps([{"lat": hasil[0], "lng": hasil[1]} for hasil in hasilLatLng])
-    return render_template('result.html', res=res, node=node, nodeNames=nodeNames)
+    adjCoor = json.dumps(coor)
+    return render_template('result.html', res=res, node=node, nodeNames=nodeNames, adjCoor=adjCoor)
 
 
 
