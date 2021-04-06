@@ -1,4 +1,5 @@
 from Algoritma import *
+from Graph import *
 
 r1 = inputToAdj("../test/test3.txt")
 r2 = inputToCoor("../test/test3.txt")

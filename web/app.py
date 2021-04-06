@@ -41,6 +41,7 @@ def result():
     # if (request.method == "POST"):
     #     return redirect(url_for('result', res=res))
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
