@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<style>
-    #map {
-        height: 400px;
-        width: 100%;
-    }
-</style>
 {% endblock %}
 {% block body %}
 <h1>Tucil Stima</h1>
+<h3>Cara menggunakan aplikasi</h3>
+<hr>
+<ol>
+    <li><p>Upload file matriks dengan format sebagai berikut:
+        <br>Pastikan formatnya sudah benar dan tidak ada spasi pada akhir baris</p>
+    </li>
+    <li>Klik tombol "Baca File</li><br>
+    <li>Pilih lokasi awal dan tujuan, sesuai dengan nama pada lokasi pada file matriks</li><br>
+    <li>Klik tombol "Cari Rute"</li><br>
+    <li>Aplikasi akan mengarahkan Anda ke halaman hasil</li>
+</ol>
 <p>
    Upload file matriks:<br>
     <input id="input-file" type="file" name="datafile" size="40">
