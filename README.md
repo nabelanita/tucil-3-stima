@@ -11,6 +11,10 @@
 ```shell
 python app.py
 ```
+Alternatif lain
+```shell
+python3 app.py
+```
 5. Buka browser favorit Anda dan ketik "localhost:5000"
 6. Ikuti sisa instruksi yang ada pada web
 ## Author
