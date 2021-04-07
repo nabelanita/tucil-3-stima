@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<h2>Hasil pencarian rute untuk {{ origin }} - {{ goal }}</h2>
+<br>
+<h3>Lintasan terpendek (merah)</h3>
+<div id="map"></div>
+<!-- <input onclick="deleteMarkers()" type="button" value="Clear" /> -->
+<br>
+
+<h3>Total jarak: {{ dist }} km</h3>
+<form action="{{ url_for('index') }}" method="get"> 
+    <button>Kembali</button>
+</form>
+<script>
+    let map
+
+    var json = "{{ res }}"
+    var listCoor = JSON.parse(json.replace(/&#34;/g,'"'))
+
+    var node = "{{ node }}"
+    var listNode = JSON.parse(node.replace(/&#34;/g,'"'))
+
+    var name = "{{ nodeNames }}"
+    var nodeNames = JSON.parse(name.replace(/&#34;/g,'"'))
+
+    var coor = "{{ adjCoor }}"
+    var adjCoor = JSON.parse(coor.replace(/&#34;/g,'"'))
+
+    
+    
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: listCoor[0],
+            mapTypeId: "terrain",
+        });
+
+        function addMarker(props) {
+            var marker = new google.maps.Marker({
+                position: props.coor,
+                map: map
+            })
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: props.content
+            })
+
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker)
+            })
+        }
+
+        function drawRoute(ltlng, map, color) {
+            const route = new google.maps.Polyline({
+                path: ltlng,
+                geodesic: true,
+                strokeColor: color,
+                strokeOpacity: 1.0,
+                strokeWeight: 2,
+            });
+            route.setMap(map);
+        }
+        
+        for (var i = 0; i < adjCoor.length; i++) {
+            drawRoute(adjCoor[i], map, "#000000")
+        }
+        
+        drawRoute(listCoor, map, "#FF0000")
+        
+
+        for (var i = 0; i < listNode.length; i++) {
+            var label = "<h3>" + nodeNames[i] + "</h3>"
+            addMarker({coor:listNode[i], content:label})
+        }
+
+    } 
+
+
+    
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbFefdoheWQ7qwuk3nGF882AgcwoErzl8&callback=initMap">
+</script>
+<!-- <script type = "text/javascript" src="{{ url_for('static', filename='map.js') }}"></script> -->
+{% endblock %}
