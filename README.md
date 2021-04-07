@@ -6,7 +6,7 @@
 ## Cara Menggunakan Aplikasi
 1. Clone repository ini ke komputer Anda
 2. Pastikan Flask sudah terinstall pada kompuuter Anda
-3. Melalui terminal Anda, change directory hingga ke folder "web"
+3. Melalui terminal Anda, masuk ke directory "src" kemudian ke directory "web"
 4. Pada terminal Anda, ketik kode di bawah ini kemudian klik enter
 ```shell
 python app.py
